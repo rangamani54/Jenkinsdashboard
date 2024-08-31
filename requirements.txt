@@ -1,0 +1,4 @@
+# jenkins_monitor/requirements.txt
+
+Flask
+python-jenkins

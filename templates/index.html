@@ -1,0 +1,44 @@
+<!-- jenkins_monitor/templates/index.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Jenkins Build Analytics</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Jenkins Build Analytics</h1>
+    <form method="GET" action="/">
+        <label for="start_time">Start Time:</label>
+        <input type="datetime-local" id="start_time" name="start_time">
+        <label for="end_time">End Time:</label>
+        <input type="datetime-local" id="end_time" name="end_time">
+        <button type="submit">Filter</button>
+    </form>
+    <table>
+        <thead>
+            <tr>
+                <th>Server</th>
+                <th>Job Name</th>
+                <th>Build Number</th>
+                <th>Status</th>
+                <th>Duration (ms)</th>
+                <th>Timestamp</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in data %}
+            <tr>
+                <td>{{ item.server }}</td>
+                <td>{{ item.job_name }}</td>
+                <td>{{ item.build_number }}</td>
+                <td>{{ item.status }}</td>
+                <td>{{ item.duration }}</td>
+                <td>{{ item.timestamp }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
